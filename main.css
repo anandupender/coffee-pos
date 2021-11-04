@@ -67,6 +67,10 @@ body{
     color: white;
     font-size: 36px;
     transition: transform 300ms ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #newOrder.close{
