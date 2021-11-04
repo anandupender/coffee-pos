@@ -61,6 +61,16 @@ function updateScreen(){
 
     if(completedOrders.length >= 1){
         document.querySelector("#completedOrders").innerHTML = completedOrders.length;
+
+        var sum = 0;
+        for(var j = 0; j < completedOrders.length; j++){
+            sum += (completedOrders[j].duration/1000);
+        }
+        var average = Math.round(sum/completedOrders.length);
+        var minutes = Math.floor(average/60);
+        var seconds = Math.round(average%60);
+        document.querySelector("#averageDuration").innerHTML = minutes + ":" + seconds;
+        
     }
 }
 
@@ -68,8 +78,6 @@ function updateDuration(){
     if(orders.length >= 1){
         var minutes = Math.floor((new Date() - orders[0].timeIn)/1000/60);
         var seconds = Math.round((new Date() - orders[0].timeIn)/1000%60);
-        console.log(minutes);
-        console.log(seconds);
         document.querySelector("#currentOrderDuration").innerHTML = minutes + ":" + seconds + " ago";
     }
 }

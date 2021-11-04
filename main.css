@@ -20,8 +20,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width:42px;
-    height:42px;
+    min-width:38px;
+    height:38px;
     padding: 16px;
     margin-right: 12px;
     border: 2px solid black;
@@ -53,9 +53,14 @@ body{
 #completeOrder{
     margin-top: 36px;
     width: 100%;
-    padding: 24px 18px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     font-size: 28px;
     opacity: .25;
+}
+
+#stats{
+    text-align: center;
 }
 
 #newOrder{
