@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee POS</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="orders">
+    </div>
+
+    <div id="currentOrder">
+        <h2>UP NOW:</h2>
+        <div id="currentOrderName">
+            RELAX!
+        </div>
+        <div id="currentOrderDuration">
+        </div>
+        <button id="completeOrder" onclick="orderDone()">DONE!</button>
+    </div>
+
+    <div id="stats">
+        <div>Completed: <span id="completedOrders">0</span></div>
+    </div>
+
+
+    <button id="newOrder" onclick="openNewOrder()">
+        +
+    </button>
+
+    <div id="newOrderModal">
+        <button class="item" onclick="newOrder('OL','Oat Latte')">Oat Latte</button>
+        <button class="item" onclick="newOrder('WL','Whole Latte')">Whole Latte</button>
+        <button class="item" onclick="newOrder('E','Espresso')">Espresso</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
