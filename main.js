@@ -1,3 +1,5 @@
+// save stuff to system memory!
+
 var orders = [];
 var completedOrders = [];
 var modal = document.querySelector("#newOrderModal");
@@ -19,6 +21,9 @@ function closeNewOrder(){
 
 function newOrder(myOrder, myOrderLong){
     var newOrder = {order: myOrder, orderLong : myOrderLong, timeIn: new Date()}
+    if(orders.length == 0) {// only drink!
+        newOrder.timeStarted = new Date();
+    }
     orders.push(newOrder);
     updateScreen();
     closeNewOrder();
@@ -27,8 +32,12 @@ function newOrder(myOrder, myOrderLong){
 function orderDone(){
     var completedOrder = orders.shift();
     completedOrder.timeOut = new Date();
-    completedOrder.duration =  completedOrder.timeOut - completedOrder.timeIn;
+    completedOrder.duration =  completedOrder.timeOut - completedOrder.timeStarted;
     completedOrders.push(completedOrder);
+
+    if(orders.length >= 1){
+        orders[0].timeStarted = new Date();
+    }
     updateScreen();
 }
 
@@ -69,17 +78,26 @@ function updateScreen(){
         var average = Math.round(sum/completedOrders.length);
         var minutes = Math.floor(average/60);
         var seconds = Math.round(average%60);
-        document.querySelector("#averageDuration").innerHTML = minutes + ":" + seconds;
+        document.querySelector("#averageWaiting").innerHTML = minutes + ":" + seconds;
         
     }
 }
 
 function updateDuration(){
     if(orders.length >= 1){
+        var minutes = Math.floor((new Date() - orders[0].timeStarted)/1000/60);
+        var seconds = Math.round((new Date() - orders[0].timeStarted)/1000%60);
+        document.querySelector("#currentOrderDuration").innerHTML = "Started: " + minutes + ":" + seconds + " ago";
+
         var minutes = Math.floor((new Date() - orders[0].timeIn)/1000/60);
         var seconds = Math.round((new Date() - orders[0].timeIn)/1000%60);
-        document.querySelector("#currentOrderDuration").innerHTML = minutes + ":" + seconds + " ago";
+        document.querySelector("#currentOrderDurationOrder").innerHTML = "Ordered: " + minutes + ":" + seconds + " ago";
     }
 }
 
 window.setInterval(updateDuration,1000);
+
+window.onbeforeunload = function(event)
+{
+    return confirm("Confirm refresh");
+};
