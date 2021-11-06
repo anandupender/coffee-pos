@@ -101,3 +101,8 @@ window.onbeforeunload = function(event)
 {
     return confirm("Confirm refresh");
 };
+
+window.onunload = function(event)
+{
+    return confirm("Confirm refresh");
+};
