@@ -41,9 +41,10 @@ body{
 }
 
 #currentOrderName{
-    font-size: 56px;
+    font-size: 48px;
     font-weight: bold;
     margin-bottom: 24px;
+    text-align: center;
 }
 
 #currentOrderDuration{
